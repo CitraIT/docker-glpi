@@ -66,6 +66,12 @@ service cron start
 #Activation du module rewrite d'apache
 a2enmod rewrite && service apache2 restart && service apache2 stop
 
+# Remove install.php file if exists
+if [ -f /var/www/html/glpi/install/install.php ];
+then
+    rm -rf /var/www/html/glpi/install/install.php
+fi
+
 #Fix to really stop apache
 pkill -9 apache
 
